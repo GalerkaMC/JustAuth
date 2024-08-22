@@ -4,6 +4,7 @@ import com.destroystokyo.paper.event.player.PlayerPickupExperienceEvent;
 import io.papermc.paper.event.player.AsyncChatEvent;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.title.Title;
+import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
@@ -121,6 +122,10 @@ public class AuthChecker implements Listener {
 
     @EventHandler
     private void event(PlayerMoveEvent ev) {
+        Location before = ev.getFrom();
+        Location after = ev.getTo();
+
+        if (before.getX() == after.getX() && before.getZ() == after.getZ()) {return;}
         cancel(ev);
     }
 
